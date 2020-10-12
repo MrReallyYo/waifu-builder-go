@@ -1,0 +1,14 @@
+<div>
+	<p>This is the App now.</p>
+<div vg-content="c.Test()"></div>
+</div>
+
+<script type="application/x-go">
+
+import "github.com/mrreallyyo/waifu-builder-go/backend"
+
+type App struct {
+	backend.StorageRef
+}
+
+</script>

@@ -1,4 +1,4 @@
-module github.com/vugu-examples/simple
+module github.com/mrreallyyo/waifu-builder-go
 
 go 1.14
 

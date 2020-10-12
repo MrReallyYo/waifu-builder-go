@@ -6,10 +6,9 @@ import (
 	"fmt"
 
 	"flag"
-
 	"github.com/vugu/vugu"
 	"github.com/vugu/vugu/domrender"
-)
+	)
 
 func main() {
 
@@ -30,7 +29,7 @@ func main() {
 		panic(err)
 	}
 
-	rootBuilder := &Root{}
+	rootBuilder := vuguSetup(buildEnv, renderer.EventEnv())
 
 	for ok := true; ok; ok = renderer.EventWait() {
 
