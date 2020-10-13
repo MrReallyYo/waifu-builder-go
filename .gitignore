@@ -1,17 +1,9 @@
 .DS_Store
-node_modules
+
+#vugu
 /dist
-
-
-# local env files
-.env.local
-.env.*.local
-
-# Log files
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
+/bin
+*_vgen.go
 
 # Editor directories and files
 .idea
