@@ -1,0 +1,12 @@
+<html>
+<head>
+    <title>I have a title now?</title>
+</head>
+
+<body>
+<div>
+    <p>This is the App now.</p>
+    <div vg-content="c.Test()"></div>
+</div>
+</body>
+</html>

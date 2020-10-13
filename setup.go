@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/mrreallyyo/waifu-builder-go/backend"
-	"github.com/mrreallyyo/waifu-builder-go/components"
 	"github.com/vugu/vugu"
 )
 
@@ -16,7 +15,7 @@ func vuguSetup(buildEnv *vugu.BuildEnv, eventEnv vugu.EventEnv) vugu.Builder {
 		}
 	})
 
-	ret := &components.App{}
+	ret := &Root{}
 	buildEnv.WireComponent(ret)
 
 	return ret

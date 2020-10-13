@@ -6,9 +6,10 @@ import (
 	"fmt"
 
 	"flag"
+
 	"github.com/vugu/vugu"
 	"github.com/vugu/vugu/domrender"
-	)
+)
 
 func main() {
 

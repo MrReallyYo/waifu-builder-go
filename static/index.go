@@ -1,0 +1,54 @@
+package static
+
+import (
+	"github.com/vugu/vugu/devutil"
+)
+
+var Index = devutil.StaticContent(`
+<!doctype html>
+<html>
+<head>
+<title>App</title>
+<meta charset="utf-8"/>
+</head>
+<body>
+<div id="vugu_mount_point">
+<img style="position: absolute; top: 50%; left: 50%;" src="https://cdnjs.cloudflare.com/ajax/libs/galleriffic/2.0.1/css/loader.gif">
+</div>
+<script src="https://cdn.jsdelivr.net/npm/text-encoding@0.7.0/lib/encoding.min.js"></script> <!-- MS Edge polyfill -->
+<script src="/wasm_exec.js"></script>
+<!-- scripts -->
+<script>
+var wasmSupported = (typeof WebAssembly === "object");
+if (wasmSupported) {
+	if (!WebAssembly.instantiateStreaming) { // polyfill
+		WebAssembly.instantiateStreaming = async (resp, importObject) => {
+			const source = await (await resp).arrayBuffer();
+			return await WebAssembly.instantiate(source, importObject);
+		};
+	}
+	var mainWasmReq = fetch("/main.wasm").then(function(res) {
+		if (res.ok) {
+			const go = new Go();
+			WebAssembly.instantiateStreaming(res, go.importObject).then((result) => {
+				go.run(result.instance);
+			});		
+		} else {
+			res.text().then(function(txt) {
+				var el = document.getElementById("vugu_mount_point");
+				el.style = 'font-family: monospace; background: black; color: red; padding: 10px';
+				el.innerText = txt;
+			})
+		}
+	})
+} else {
+	document.getElementById("vugu_mount_point").innerHTML = 'This application requires WebAssembly support.  Please upgrade your browser.';
+}
+</script>
+</body>
+</html>
+`)
+
+var IndexAutoreload = Index.Replace(
+	"<!-- scripts -->",
+	"<script src=\"http://localhost:8324/auto-reload.js\"></script>\n<!-- scripts -->")

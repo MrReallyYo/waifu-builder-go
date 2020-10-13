@@ -3,10 +3,10 @@
 package main
 
 import (
+	"github.com/mrreallyyo/waifu-builder-go/static"
+	"github.com/vugu/vugu/devutil"
 	"log"
 	"net/http"
-
-	"github.com/vugu/vugu/devutil"
 )
 
 func main() {
@@ -15,9 +15,7 @@ func main() {
 
 	wc := devutil.NewWasmCompiler().SetDir(".")
 	mux := devutil.NewMux()
-	mux.Match(devutil.NoFileExt, devutil.DefaultAutoReloadIndex.Replace(
-		`<!-- styles -->`,
-		`<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">`))
+	mux.Match(devutil.NoFileExt, static.IndexAutoreload)
 	mux.Exact("/main.wasm", devutil.NewMainWasmHandler(wc))
 	mux.Exact("/wasm_exec.js", devutil.NewWasmExecJSHandler(wc))
 	mux.Default(devutil.NewFileServer().SetDir("."))

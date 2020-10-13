@@ -1,3 +1,3 @@
 package main
 
-//go:generate vugugen -s components
+//go:generate vugugen -s -r
